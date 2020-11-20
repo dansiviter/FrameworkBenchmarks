@@ -12,9 +12,9 @@ public class JsonService implements Service {
 
     private JsonBuilderFactory jsonBuilderFactory;
 
-     public JsonService() {
-         this.jsonBuilderFactory = Json.createBuilderFactory(Collections.emptyMap());
-     }
+    public JsonService() {
+        this.jsonBuilderFactory = Json.createBuilderFactory(Collections.emptyMap());
+    }
 
     @Override
     public void update(Routing.Rules rules) {
