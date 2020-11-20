@@ -3,9 +3,9 @@ server:
   host: 0.0.0.0
 
 db:
-  source: jdbc
+  source: "jdbc"
   connection:
-    url: "jdbc:postgresql://host.docker.internal:5432/hello_world"
+    url: "jdbc:postgresql://localhost:5432/hello_world"
     username: "benchmarkdbuser"
     password: "benchmarkdbpass"
   statements:

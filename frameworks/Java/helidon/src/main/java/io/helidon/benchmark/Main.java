@@ -99,10 +99,11 @@ public final class Main {
         // By default this will pick up application.yaml from the classpath
         Config config = Config.create();
 
-        // Build server with JSONP support
-        WebServer server = WebServer.builder(createRouting(config))
-                .config(config.get("server"))
+        // Get webserver config from the "server" section of application.yaml
+        WebServer server = WebServer
+                .builder(createRouting(config))
                 .addMediaSupport(JsonpSupport.create())
+                .config(config.get("server"))
                 .build();
 
         // Start the server and print some info.
@@ -125,7 +126,6 @@ public final class Main {
         public HikariCpExtension extension(Config config) {
             return c -> {
                 c.setMaximumPoolSize(Runtime.getRuntime().availableProcessors() * 2);
-                c.setLeakDetectionThreshold(25_000);
             };
         }
 
