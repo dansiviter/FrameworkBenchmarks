@@ -123,9 +123,7 @@ public final class Main {
     public static class HikariCustomiser implements HikariCpExtensionProvider {
         @Override
         public HikariCpExtension extension(Config config) {
-            return c -> {
-                c.setMaximumPoolSize(Runtime.getRuntime().availableProcessors() * 2);
-            };
+            return c -> c.setMaximumPoolSize(Runtime.getRuntime().availableProcessors() * 2);
         }
 
         @Override
