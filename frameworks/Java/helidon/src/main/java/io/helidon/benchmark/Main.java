@@ -97,7 +97,7 @@ public final class Main {
                 Main.class.getResourceAsStream("/logging.properties"));
 
         // By default this will pick up application.yaml from the classpath
-        Config config = Config.create();
+		Config config = Config.create();
 
         // Get webserver config from the "server" section of application.yaml
         WebServer server = WebServer
@@ -125,7 +125,8 @@ public final class Main {
         @Override
         public HikariCpExtension extension(Config config) {
             return c -> {
-                c.setMaximumPoolSize(Runtime.getRuntime().availableProcessors() * 2);
+				c.setMaximumPoolSize(Runtime.getRuntime().availableProcessors() * 2);
+				c.setLeakDetectionThreshold(25_000);
             };
         }
 

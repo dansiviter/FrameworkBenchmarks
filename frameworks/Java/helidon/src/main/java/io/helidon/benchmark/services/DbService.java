@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Logger;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -23,6 +24,7 @@ import io.helidon.webserver.ServerResponse;
 import io.helidon.webserver.Service;
 
 public class DbService implements Service {
+	private static final Logger LOGGER = Logger.getLogger(DbService.class.getName());
 
     private final DbRepository repository;
     private JsonBuilderFactory jsonBuilderFactory;
@@ -42,6 +44,7 @@ public class DbService implements Service {
 
     private void db(final ServerRequest request,
                           final ServerResponse response) {
+		LOGGER.info(() -> "db(...)");
         repository.getWorld(randomWorldNumber())
                 .map(World::toJson)
                 .thenAccept(response::send)
@@ -50,6 +53,7 @@ public class DbService implements Service {
 
     private void queries(final ServerRequest request,
                            final ServerResponse response) {
+		LOGGER.info(() -> "queries(...)");
         @SuppressWarnings("unchecked")
         Single<JsonObject>[] worlds = new Single[parseQueryCount(request.queryParams())];
         Arrays.setAll(worlds, i -> repository.getWorld(randomWorldNumber()).map(World::toJson));

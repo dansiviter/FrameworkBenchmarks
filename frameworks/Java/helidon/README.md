@@ -59,3 +59,7 @@ There is currently one repository implementation.
 ### Template rendering Test
 
     http://localhost:8080/fortunes
+
+
+docker run -it --rm --network tfb -v /var/run/docker.sock:/var/run/docker.sock -v %CD%:/FrameworkBenchmarks techempower/tfb --mode verify --test helidon
+ docker run -it --rm --network tfb -v /var/run/docker.sock:/var/run/docker.sock -v %CD%:/FrameworkBenchmarks techempower/tfb --mode benchmark --test helidon
