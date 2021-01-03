@@ -20,11 +20,8 @@ public class JdbcRepository implements DbRepository {
 
     @Override
     public Single<World> updateWorld(World world) {
-        return this.client.execute(exec -> exec
-            .createNamedUpdate("update-world-by-id")
-            .params(world.randomNumber, world.id)
-            .execute()
-        ).map(r -> world);
+        return this.client.execute(exec -> exec.namedUpdate("update-world-by-id", world.randomNumber, world.id))
+                .map(r -> world);
     }
 
     @Override
